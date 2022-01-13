@@ -20,7 +20,7 @@
             id="salario"
             v-model="calculateForm.salario"
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:ring-green-200"
-            type="text"
+            type="number"
             tabindex="3"
             placeholder="Ex: 5000.00"
             required
@@ -37,12 +37,13 @@
             id="descontos"
             v-model="calculateForm.descontos"
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:ring-green-200"
-            type="text"
+            type="number"
             tabindex="2"
             placeholder="Ex: 200.00"            
           >
       </div>
-      <button id='calcular'
+      <button v-bind:disabled="calculateForm.salario.length < 3  ? true : false"
+            id='calcular'
             class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-green-200"
             type="submit"
             tabindex="3"
@@ -90,7 +91,8 @@ export default {
     },
     formatPrice(value) {
         let val = (value/1).toFixed(2).replace('.', ',')
-        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+        val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+        return parseInt(val, 10);
     }
   }
   //name: 'App',
@@ -111,7 +113,7 @@ export default {
   display: inline-block;
   font-size: 20px;
 }
-input[type=text], :focus {
+input[type=number], :focus {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -123,9 +125,22 @@ input[type=text], :focus {
   background-color: whitesmoke;
 
 }
+
 button[type=submit] {
   width: 100%;
   background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+button[type=submit]:disabled {
+  width: 100%;
+  background-color: grey;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
