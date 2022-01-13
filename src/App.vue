@@ -33,14 +33,14 @@
           >
             Outros descontos <span class="text-red-500"></span>
           </label>
-      <input
+          <input
             id="descontos"
             v-model="calculateForm.descontos"
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:ring-green-200"
             type="text"
             tabindex="2"
             placeholder="Ex: 200.00"            
-      >
+          >
       </div>
       <button id='calcular'
             class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-green-200"
