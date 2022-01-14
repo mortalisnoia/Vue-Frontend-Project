@@ -136,9 +136,7 @@ describe('Testes da tela de calcular salário', () => {
 
         await wrapper.find(salaryField).setValue(validSalary);
         expect(wrapper.vm.$data.calculateForm.salario).toBe(validSalary.toString());
-        // await wrapper.find(calculateButton).trigger('submit');
-
-        await wrapper.vm.calcular();
+        await wrapper.find(calculateButton).trigger('submit');
 
         expect(mockCalcular).toHaveBeenCalledTimes(1);
         expect(wrapper.find(mensagem).text()).toBe(wrapper.vm.$data.calculateForm.resposta);
