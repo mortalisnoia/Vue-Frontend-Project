@@ -1,12 +1,14 @@
 import { mount } from '@vue/test-utils'
 import app from '@/App.vue'
 import axios from 'axios';
+import { isRaw } from '@vue/composition-api';
 
 const salaryField = '#salario';
 const discounts = '#descontos';
 const calculateButton = '#calcular';
 const mensagem = '#mensagem';
-let validSalary = 333;
+let validSalary = 5000;
+let validDiscount = 200;
 
 jest.mock("axios");
 
@@ -42,6 +44,16 @@ describe('Testes da tela de calcular salário', () => {
         expect(wrapper.vm.$data.calculateForm.salarioLiquido).toBe('0,00');
         expect(wrapper.vm.$data.calculateForm.mensagem).toBe('Seu salário líquido é de R$');
         expect(wrapper.find(calculateButton).text()).toBe('Calcular Salário Líquido');
+    })
+
+    it('checando se os valores de fato foram preenchidos na tela do componente', async () => {
+        const wrapper = factory();
+
+        await wrapper.find(salaryField).setValue(validSalary);
+        await wrapper.find(discounts).setValue(validDiscount);
+
+        expect(wrapper.find(salaryField).element.value).toBe(validSalary.toString());
+        expect(wrapper.find(discounts).element.value).toBe(validDiscount.toString());
     })
 
     it('Setando o data do componente sem interagir diretamente com a página', async () => {
@@ -110,7 +122,7 @@ describe('Testes da tela de calcular salário', () => {
         expect(axios.post).toHaveBeenCalledTimes(1);
 
         //Aqui eu verifico se o mock enviou as informações corretas necessárias para o backend
-        expect(axios.post).toHaveBeenCalledWith("http://localhost:3000", {"grossSalary": "333", "otherDiscounts": ""}, 
+        expect(axios.post).toHaveBeenCalledWith("http://localhost:3000", {"grossSalary": "5000", "otherDiscounts": ""}, 
             {"headers": {"Content-Type": "application/json"}});
     })
 
