@@ -51,7 +51,7 @@
             Calcular Salário Líquido
       </button>
     </form>
-    <h3>{{ calculateForm.mensagem }} {{ formatPrice(calculateForm.salarioLiquido) }} </h3>
+    <h3 id="mensagem">{{ calculateForm.resposta }}</h3>
   </div>
 </template>
 
@@ -63,8 +63,9 @@ export default {
     calculateForm: {
       salario: '',
       descontos: '',
-      salarioLiquido: '',
-      mensagem: 'Seu salário líquido é de R$'
+      salarioLiquido: '0,00',
+      mensagem: 'Seu salário líquido é de R$',
+      resposta: ''
     }
   }),
   methods: {
@@ -79,20 +80,18 @@ export default {
           'Content-Type': 'application/json',
         }})
         this.calculateForm.salarioLiquido = response.data;
-
-        if (response?.data?.errors?.length > 0) {
-          alert('Ocorreu um problema')
-        }
-        
+        this.calculateForm.resposta = this.calculateForm.mensagem + this.formatPrice(this.calculateForm.salarioLiquido);
       }
       catch {
         //
       }
+      
     },
+    
     formatPrice(value) {
-        let val = (value/1).toFixed(2).replace('.', ',')
-        val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
-        return parseInt(val, 10);
+      let val = (value/1).toFixed(2).replace('.', ',')
+      val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+      return parseInt(val, 10);
     }
   }
   //name: 'App',

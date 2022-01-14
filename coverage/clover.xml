@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1642181331207" clover="3.2.0">
+  <project timestamp="1642181331207" name="All files">
+    <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3" elements="11" coveredelements="11" complexity="0" loc="8" ncloc="8" packages="1" files="1" classes="1"/>
+    <file name="App.vue" path="/home/me/workspace/calculate-salary-frontend/src/App.vue">
+      <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+      <line num="62" count="7" type="stmt"/>
+      <line num="72" count="2" type="stmt"/>
+      <line num="73" count="2" type="stmt"/>
+      <line num="74" count="2" type="stmt"/>
+      <line num="81" count="2" type="stmt"/>
+      <line num="90" count="12" type="stmt"/>
+      <line num="91" count="12" type="stmt"/>
+      <line num="92" count="12" type="stmt"/>
+    </file>
+  </project>
+</coverage>
