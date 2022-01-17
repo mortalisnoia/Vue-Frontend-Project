@@ -49,9 +49,11 @@ describe('Testes da tela de calcular salário', () => {
     it('checando se os valores de fato foram preenchidos na tela do componente', async () => {
         const wrapper = factory();
 
+        //Escrevendo nos campos do form. É preciso usar o "await" para que os expects não sejam executados no mesmo Frame, quando o campo ainda estava vazio
         await wrapper.find(salaryField).setValue(validSalary);
         await wrapper.find(discounts).setValue(validDiscount);
 
+        //Verificando se os campos estão com os valores preenchidos anteriormente.
         expect(wrapper.find(salaryField).element.value).toBe(validSalary.toString());
         expect(wrapper.find(discounts).element.value).toBe(validDiscount.toString());
     })
@@ -129,43 +131,52 @@ describe('Testes da tela de calcular salário', () => {
 
     
     it('Testando o retorno da função, mockando o retorno da API', async () => {
+        //Espiando o método "calcular"
         const mockCalcular = jest.spyOn(app.methods, 'calcular');
         const wrapper = factory();
 
+        //A parte chave do teste. Aqui eu digo que sempre que eu tentar fazer um post pelo axios, quero receber essa resposta, simulando um backend
         axios.post.mockResolvedValue({data: 1001});
 
+        //Preencho os campos para habilitar o botão
         await wrapper.find(salaryField).setValue(validSalary);
-        expect(wrapper.vm.$data.calculateForm.salario).toBe(validSalary.toString());
+        //Disparo o submit no form, fazendo com que o axios tente mandar um post para a API
         await wrapper.find(calculateButton).trigger('submit');
 
+        //Verifico se a função calcular foi de fato chamada 1x
         expect(mockCalcular).toHaveBeenCalledTimes(1);
+
+        //Verifico se o retorno mockado foi de fato escrito na tela
         expect(wrapper.find(mensagem).text()).toBe(wrapper.vm.$data.calculateForm.resposta);
     
     })
 
+    //Com esse carinha podemos simular o tempo
     jest.useFakeTimers();
     it('Resposta deve sumir após 5 segundos, usando FakeTimers()', async () => {
-        const mockCalcular = jest.spyOn(app.methods, 'calcular');
+        //Novamente monto o componente
         const wrapper = factory();
 
+        //Como preciso de um valor na tela, novamente mocko o retorno da API
         axios.post.mockResolvedValue({data: 1001});
 
+        //Preencho o campo de salário e dou um submit no form
         await wrapper.find(salaryField).setValue(validSalary);
-        
         await wrapper.find(calculateButton).trigger('submit');
 
+        //Verifico se a resposta foi escrita na tela
         expect(wrapper.find(mensagem).text()).toBe(wrapper.vm.$data.calculateForm.resposta);
 
+        //Passo 1 segundo, usando o FakeTimers()
         await jest.advanceTimersByTime(1000);
 
+        //Verifico se a propriedade ainda está visível. Deve sumir somente após 5 segundos
         expect(wrapper.vm.$data.calculateForm.elementVisible).toBe(true);
 
-        await jest.advanceTimersByTime(3000);
+        //Passo mais 5 segundos
+        await jest.advanceTimersByTime(5000);
 
-        expect(wrapper.vm.$data.calculateForm.elementVisible).toBe(true);
-
-        await jest.advanceTimersByTime(2000);
-
+        //Agora após 6 segundos, a propriedade não deve mais estar visível. Checo se ela está "false"
         expect(wrapper.vm.$data.calculateForm.elementVisible).toBe(false);
     })
   
