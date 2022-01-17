@@ -2,6 +2,7 @@ import { mount } from '@vue/test-utils'
 import app from '@/App.vue'
 import axios from 'axios';
 
+//Apenas declarando variáveis que vou usar nos testes, pra não precisar escrever tudo e deixar a leitura confusa
 const salaryField = '#salario';
 const discounts = '#descontos';
 const calculateButton = '#calcular';
@@ -9,6 +10,7 @@ const mensagem = '#mensagem';
 let validSalary = 5000;
 let validDiscount = 200;
 
+//Para mockar o axios, usamos isso
 jest.mock("axios");
 
 //Montagem do componente, melhor separar em uma função pois será usado em todos os casos de teste
@@ -20,7 +22,7 @@ describe('Testes da tela de calcular salário', () => {
 
     //Roda antes de cada execução de caso de teste
     //Resetamos todos os mocks para um caso de teste não ter interferência em outro
-    //Não fazer isso pode acarretar em erros na asserção de 'toBeCalledTimes()', pois nunca zerará após uma execução
+    //Não fazer isso pode acarretar em erros na asserção de 'toBeCalledTimes()', pois a contagem nunca zerará
     afterEach(() => {
         jest.clearAllMocks();
     });
