@@ -1,7 +1,6 @@
 import { mount } from '@vue/test-utils'
 import app from '@/App.vue'
 import axios from 'axios';
-import { isRaw } from '@vue/composition-api';
 
 const salaryField = '#salario';
 const discounts = '#descontos';
