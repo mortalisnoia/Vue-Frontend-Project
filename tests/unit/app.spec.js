@@ -144,7 +144,7 @@ describe('Testes da tela de calcular salário', () => {
     })
 
     jest.useFakeTimers();
-    it.only('Resposta deve sumir após 5 segundos, usando FakeTimers()', async () => {
+    it('Resposta deve sumir após 5 segundos, usando FakeTimers()', async () => {
         const mockCalcular = jest.spyOn(app.methods, 'calcular');
         const wrapper = factory();
 
