@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1642192810707" clover="3.2.0">
-  <project timestamp="1642192810707" name="All files">
-    <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3" elements="12" coveredelements="12" complexity="0" loc="9" ncloc="9" packages="1" files="1" classes="1"/>
+<coverage generated="1642432907166" clover="3.2.0">
+  <project timestamp="1642432907166" name="All files">
+    <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4" elements="15" coveredelements="15" complexity="0" loc="11" ncloc="11" packages="1" files="1" classes="1"/>
     <file name="App.vue" path="/home/me/workspace/calculate-salary-frontend/src/App.vue">
-      <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
-      <line num="62" count="8" type="stmt"/>
-      <line num="73" count="3" type="stmt"/>
-      <line num="74" count="3" type="stmt"/>
-      <line num="75" count="3" type="stmt"/>
-      <line num="82" count="3" type="stmt"/>
+      <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+      <line num="62" count="1" type="stmt"/>
+      <line num="74" count="1" type="stmt"/>
+      <line num="75" count="1" type="stmt"/>
+      <line num="76" count="1" type="stmt"/>
       <line num="83" count="1" type="stmt"/>
-      <line num="92" count="1" type="stmt"/>
-      <line num="93" count="1" type="stmt"/>
-      <line num="94" count="1" type="stmt"/>
+      <line num="84" count="1" type="stmt"/>
+      <line num="85" count="1" type="stmt"/>
+      <line num="86" count="2" type="stmt"/>
+      <line num="95" count="1" type="stmt"/>
+      <line num="96" count="1" type="stmt"/>
+      <line num="97" count="1" type="stmt"/>
     </file>
   </project>
 </coverage>

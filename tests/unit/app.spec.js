@@ -142,5 +142,31 @@ describe('Testes da tela de calcular salário', () => {
         expect(wrapper.find(mensagem).text()).toBe(wrapper.vm.$data.calculateForm.resposta);
     
     })
+
+    jest.useFakeTimers();
+    it.only('Resposta deve sumir após 5 segundos, usando FakeTimers()', async () => {
+        const mockCalcular = jest.spyOn(app.methods, 'calcular');
+        const wrapper = factory();
+
+        axios.post.mockResolvedValue({data: 1001});
+
+        await wrapper.find(salaryField).setValue(validSalary);
+        
+        await wrapper.find(calculateButton).trigger('submit');
+
+        expect(wrapper.find(mensagem).text()).toBe(wrapper.vm.$data.calculateForm.resposta);
+
+        await jest.advanceTimersByTime(1000);
+
+        expect(wrapper.vm.$data.calculateForm.elementVisible).toBe(true);
+
+        await jest.advanceTimersByTime(3000);
+
+        expect(wrapper.vm.$data.calculateForm.elementVisible).toBe(true);
+
+        await jest.advanceTimersByTime(2000);
+
+        expect(wrapper.vm.$data.calculateForm.elementVisible).toBe(false);
+    })
   
 })
