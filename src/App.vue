@@ -51,7 +51,7 @@
             Calcular Salário Líquido
       </button>
     </form>
-    <h3 id="mensagem">{{ calculateForm.resposta }}</h3>
+    <h3 v-show='calculateForm.elementVisible' class='hideElement' id="mensagem">{{ calculateForm.resposta }}</h3>
   </div>
 </template>
 
@@ -65,7 +65,8 @@ export default {
       descontos: '',
       salarioLiquido: '0,00',
       mensagem: 'Seu salário líquido é de R$',
-      resposta: ''
+      resposta: '',
+      elementVisible: true
     }
   }),
   methods: {
@@ -81,6 +82,8 @@ export default {
         }})
         this.calculateForm.salarioLiquido = response.data;
         this.calculateForm.resposta = this.calculateForm.mensagem + this.formatPrice(this.calculateForm.salarioLiquido);
+        this.calculateForm.elementVisible = true;
+        setTimeout(() => this.calculateForm.elementVisible = false, 5000)
       }
       catch {
         //
