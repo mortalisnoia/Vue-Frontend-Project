@@ -34,7 +34,7 @@ describe('Testes da tela de calcular salário', () => {
         expect(wrapper.html()).toContain('<div id=\"app\">');
     })
 
-    it.only('Estado inicial do componente deve conter o mesmo data do componente', () => {
+    it('Estado inicial do componente deve conter o mesmo data do componente', () => {
         const wrapper = factory();
 
         //Para pegarmos valores de campos na jsdom temos que acessar o .vm do wrapper ou diretamente o "value" do elemento.
