@@ -34,13 +34,14 @@ describe('Testes da tela de calcular salário', () => {
         expect(wrapper.html()).toContain('<div id=\"app\">');
     })
 
-    it('Estado inicial do componente deve conter o mesmo data do componente', () => {
+    it.only('Estado inicial do componente deve conter o mesmo data do componente', () => {
         const wrapper = factory();
 
-        //Para pegarmos valores de campos na jsdom temos que acessar o .vm do wrapper.
-        //Se tentarmos pegar o valor direto, ele sempre retornará o valor padrão mesmo depois de modificado, que nesse caso é vazio
+        //Para pegarmos valores de campos na jsdom temos que acessar o .vm do wrapper ou diretamente o "value" do elemento.
         //Como não houve interação e a montagem foi padrão, os campos devem ter o mesmo valor do data do componente
         expect(wrapper.vm.$data.calculateForm.salario).toBe('');
+        expect(wrapper.find(salaryField).element.value).toBe('');
+
         expect(wrapper.vm.$data.calculateForm.descontos).toBe('');
         expect(wrapper.vm.$data.calculateForm.salarioLiquido).toBe('0,00');
         expect(wrapper.vm.$data.calculateForm.mensagem).toBe('Seu salário líquido é de R$');
@@ -83,7 +84,7 @@ describe('Testes da tela de calcular salário', () => {
         expect(wrapper.get(calculateButton).element.disabled).toBe(true);
 
         //Inserindo um número com length >= 3 para habilitar o botão de calcular
-        await wrapper.find(salaryField).setValue('123');
+        await wrapper.find(salaryField).setValue(validSalary);
 
         //Checando novamente a propriedade, que agora deve ser false
         expect(wrapper.find(calculateButton).element.disabled).toBe(false);
