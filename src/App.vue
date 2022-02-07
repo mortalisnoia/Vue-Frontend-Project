@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <p><img src="@/assets/melhorenvio.png"
+    <p><img src="@/assets/brainny.png"
       contain
       height="250px"
       width="500px"
