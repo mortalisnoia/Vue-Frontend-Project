@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <p><img src="@/assets/brainny.png"
+    <p><img src="@/assets/brainny.jpeg"
       contain
       height="250px"
-      width="500px"
+      width="700px"
       ></p>
     <h2 class="font-bold text-xl">
         Calcule seu salário líquido
